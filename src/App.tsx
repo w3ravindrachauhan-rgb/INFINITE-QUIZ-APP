@@ -2,6 +2,7 @@ import { useState } from 'react'
 import QuestionCard from './components/QuestionCard'
 import type { UserDetails } from './assets/types/types';
 import Registration from './components/Registration';
+import { mockQuestion } from './data/questions';
 
 function App() {
   // Logic State
@@ -12,25 +13,6 @@ function App() {
   const [userAnswer, setUserAnswer] = useState<string | null>(null);
   const [user, setUser] = useState<UserDetails | null>(null);
   const [gameState, setGameState] = useState<'START' | 'QUIZ' | 'END'>('START');
-
-  // Mock data for now (we will fetch from an API in the next step!)
-  const mockQuestion = [
-    {
-      question: "Which hook is used for side effects in React?",
-      answers: ["useState", "useEffect", "useContext", "useReducer"],
-      correctAnswer: "useEffect"
-    },
-    {
-      question: "What is the correct command to create a new Vite project?",
-      answers: ["npm create vite@latest", "npx create-react-app", "npm install vite", "vite new"],
-      correctAnswer: "npm create vite@latest"
-    },
-    {
-      question: "Which of the following is used to pass data to a child component?",
-      answers: ["State", "Props", "Hooks", "Refs"],
-      correctAnswer: "Props"
-    }
-  ];
 
   const startQuiz = (details: UserDetails) => {
     setUser(details);
@@ -95,6 +77,14 @@ function App() {
 
       {gameState === 'QUIZ' &&(
         <>
+          {/* Progress Bar Container */}
+          <div className="w-full max-w-md bg-slate-700 h-2 rounded-full mb-6 overflow-hidden">
+            <div 
+              className="bg-blue-500 h-full transition-all duration-500 ease-out"
+              style={{ width: `${((currentQuestion + 1) / mockQuestion.length) * 100}%` }}
+            />
+          </div>
+
           <p className="text-white mb-4">Score: {score}</p>
           <QuestionCard 
                   questionNr={currentQuestion + 1}
