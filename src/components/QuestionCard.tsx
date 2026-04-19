@@ -31,12 +31,10 @@ const QuestionCard: React.FC<Props> = ({
       {answers.map((answer) => (
         <button
           key={answer}
-          disabled={!!userAnswer} // Disable button if user already answered
           value={answer}
           onClick={callback}
-          className={`w-full p-3 text-left rounded-lg border-2 transition-all 
-            ${!userAnswer ? 'border-slate-200 hover:border-blue-400 hover:bg-blue-50' : ''}
-            ${userAnswer === answer ? 'border-blue-600 bg-blue-100' : 'border-slate-200'}
+          className={`w-full p-3 text-left rounded-lg border-2 transition-all
+            ${userAnswer === answer ? 'border-blue-600 bg-blue-100' : 'border-slate-200 hover:border-blue-400 hover:bg-blue-50'}
           `}
         >
           <span dangerouslySetInnerHTML={{ __html: answer }} />
