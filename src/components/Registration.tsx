@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { UserDetails } from '../assets/types/types';
+import type { UserDetails } from '../types/types';
 
 interface Props {
   onStart: (details: UserDetails) => void;

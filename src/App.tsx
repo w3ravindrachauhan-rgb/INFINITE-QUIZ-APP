@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import QuestionCard from './components/QuestionCard'
-import type { UserDetails } from './assets/types/types';
+import type { UserDetails } from './types/types';
 import Registration from './components/Registration';
 import { mockQuestion } from './data/questions';
 
