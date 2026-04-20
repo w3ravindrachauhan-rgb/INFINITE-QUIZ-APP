@@ -109,8 +109,8 @@ function App() {
             />
           </div>
 
-              <div className="flex items-center justify-between mb-4 w-full max-w-md text-white">
-            <p>Score: {score}</p>
+              <div className="flex items-center justify-end mb-4 w-full max-w-md text-white">
+            {/*<p>Score: {score}</p>*/}
             <p className="font-mono text-blue-300">
               Time left: {Math.floor(secondsLeft / 60)}:{String(secondsLeft % 60).padStart(2, '0')}
             </p>
