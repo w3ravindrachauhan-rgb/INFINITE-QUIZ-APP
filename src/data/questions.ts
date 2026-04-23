@@ -1,10 +1,6 @@
 // src/data/questions.ts
 
-export interface Question {
-  question: string;
-  answers: string[];
-  correctAnswer: string;
-}
+import type { Question } from '../types/types';
 
 // Mock data for now (we will fetch from an API in the next step!)
 export const mockQuestion: Question[] = 

@@ -5,4 +5,10 @@ interface UserDetails {
   token: string;
 }
 
+export interface Question {
+  question: string;
+  answers: string[];
+  correctAnswer: string;
+}
+
 export type { UserDetails };
