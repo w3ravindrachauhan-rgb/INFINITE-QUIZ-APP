@@ -5,6 +5,7 @@ import Registration from './components/Registration';
 import { mockQuestion } from './data/questions';
 
 function App() {
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'https://localhost:7039';
   // Logic State
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -22,7 +23,8 @@ function App() {
     const fetchQuestions = async () => {
       try {
         // Replace with your actual API endpoint
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/Questions/React`);
+        //const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/Questions/React`);
+        const response = await fetch(`${apiBaseUrl}/api/Questions/React`);
         if (!response.ok) {
           throw new Error('Failed to fetch questions');
         }
