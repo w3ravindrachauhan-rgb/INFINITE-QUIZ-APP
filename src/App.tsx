@@ -15,8 +15,8 @@ function App() {
   const [secondsLeft, setSecondsLeft] = useState(300);
   const [user, setUser] = useState<UserDetails | null>(null);
   const [gameState, setGameState] = useState<'START' | 'QUIZ' | 'END'>('START');
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
+  //const videoRef = useRef<HTMLVideoElement>(null);
+  //const streamRef = useRef<MediaStream | null>(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
