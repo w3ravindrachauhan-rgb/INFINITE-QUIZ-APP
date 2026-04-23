@@ -2,6 +2,8 @@ import { useEffect, useState} from 'react'
 import QuestionCard from './components/QuestionCard'
 import type { UserDetails, Question } from './types/types';
 import Registration from './components/Registration';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 import { mockQuestion } from './data/questions';
 
 function App() {
@@ -22,7 +24,7 @@ function App() {
   );
   const [secondsLeft, setSecondsLeft] = useState(300);
   const [user, setUser] = useState<UserDetails | null>(null);
-  const [gameState, setGameState] = useState<'START' | 'QUIZ' | 'END'>('START');
+  const [gameState, setGameState] = useState<'START' | 'LOGIN' | 'SIGNUP' | 'QUIZ' | 'END'>('START');
   //const videoRef = useRef<HTMLVideoElement>(null);
   //const streamRef = useRef<MediaStream | null>(null);
 
@@ -32,6 +34,7 @@ function App() {
         // Replace with your actual API endpoint
         //const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/Questions/React`);
         const response = await fetch(`${apiBaseUrl}/api/Questions/React`);
+        console.log(apiBaseUrl);
         if (!response.ok) {
           throw new Error('Failed to fetch questions');
         }
@@ -49,7 +52,7 @@ function App() {
     };
 
     fetchQuestions();
-  }, []);
+  }, [apiBaseUrl]);
 
   const startQuiz = (details: UserDetails) => {
     setUser(details);
@@ -59,6 +62,22 @@ function App() {
     setCurrentQuestion(0);
     setGameState('QUIZ');
   }
+
+  const goToLogin = () => setGameState('LOGIN');
+  const goToSignUp = () => setGameState('SIGNUP');
+  const goToRegistration = () => setGameState('START');
+
+  const handleLogin = (email: string, password: string) => {
+    // TODO: Implement actual login logic
+    alert(`Login attempted with ${email}`);
+    goToRegistration();
+  };
+
+  const handleSignUp = (details: UserDetails) => {
+    // TODO: Implement actual signup logic
+    alert(`Sign up attempted for ${details.name} as ${details.role}`);
+    goToRegistration();
+  };
 
   const previousQuestion = () => {
     const prevQ = currentQuestion - 1;
@@ -201,7 +220,9 @@ function App() {
           )} */}
 
           {/* 2. Page Content based on Game State */}
-          {gameState === 'START' && <Registration onStart={startQuiz} />}
+          {gameState === 'START' && <Registration onStart={startQuiz} onLogin={goToLogin} onSignUp={goToSignUp} />}
+          {gameState === 'LOGIN' && <Login onBack={goToRegistration} onLogin={handleLogin} />}
+          {gameState === 'SIGNUP' && <SignUp onBack={goToRegistration} onSignUp={handleSignUp} />}
 
           {gameState === 'QUIZ' && (
             <>

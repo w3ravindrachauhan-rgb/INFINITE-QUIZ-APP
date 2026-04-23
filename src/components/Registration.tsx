@@ -3,9 +3,11 @@ import type { UserDetails } from '../types/types';
 
 interface Props {
   onStart: (details: UserDetails) => void;
+  onLogin: () => void;
+  onSignUp: () => void;
 }
 
-const Registration: React.FC<Props> = ({ onStart }) => {
+const Registration: React.FC<Props> = ({ onStart, onLogin, onSignUp }) => {
   const [details, setDetails] = useState<UserDetails>({ name: '', email: '', token: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -42,6 +44,20 @@ const Registration: React.FC<Props> = ({ onStart }) => {
           Authorize & Start Quiz
         </button>
       </form>
+      <div className="flex space-x-2 mt-4">
+        <button
+          onClick={onLogin}
+          className="flex-1 bg-gray-600 text-white py-2 rounded-lg font-bold hover:bg-gray-700 transition-colors"
+        >
+          Login
+        </button>
+        <button
+          onClick={onSignUp}
+          className="flex-1 bg-green-600 text-white py-2 rounded-lg font-bold hover:bg-green-700 transition-colors"
+        >
+          Sign Up
+        </button>
+      </div>
     </div>
   );
 };

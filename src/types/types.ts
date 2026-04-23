@@ -2,7 +2,8 @@
 interface UserDetails {
   name: string;
   email: string;
-  token: string;
+  token?: string;
+  role?: 'Developer' | 'HR' | 'Admin';
 }
 
 export interface Question {
