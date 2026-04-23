@@ -5,7 +5,14 @@ import Registration from './components/Registration';
 import { mockQuestion } from './data/questions';
 
 function App() {
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? 'https://localhost:7039';
+  const apiBaseUrl = (() => {
+    const rawUrl = import.meta.env.VITE_API_BASE_URL;
+    if (!rawUrl) return 'https://localhost:7039';
+    return rawUrl.startsWith('http://') || rawUrl.startsWith('https://')
+      ? rawUrl
+      : `https://${rawUrl}`;
+  })();
+
   // Logic State
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
