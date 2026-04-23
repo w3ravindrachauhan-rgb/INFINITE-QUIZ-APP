@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState} from 'react'
 import QuestionCard from './components/QuestionCard'
 import type { UserDetails, Question } from './types/types';
 import Registration from './components/Registration';
